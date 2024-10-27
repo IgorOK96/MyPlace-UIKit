@@ -11,18 +11,64 @@
         <scene sceneID="vZr-tZ-QXx">
             <objects>
                 <tableViewController id="m3i-ep-mBV" customClass="MainViewController" customModule="MyPlace" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="O8g-Sv-hac">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="O8g-Sv-hac">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="ZlX-2d-yQZ">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="ZlX-2d-yQZ" customClass="CustomTableViewCell" customModule="MyPlace" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZlX-2d-yQZ" id="ZRo-yh-j4t">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pnn-fI-QWL">
+                                            <rect key="frame" x="15" y="10" width="65" height="65"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="65" id="AOD-7o-Tjq"/>
+                                                <constraint firstAttribute="height" constant="65" id="sg0-lU-Ice"/>
+                                            </constraints>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Zs7-nh-31g">
+                                            <rect key="frame" x="93" y="7" width="284" height="71.333333333333329"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3S-do-RDY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="284" height="24.666666666666668"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjB-m4-pdZ">
+                                                    <rect key="frame" x="0.0" y="28.666666666666664" width="284" height="20.666666666666664"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faK-lY-yUp">
+                                                    <rect key="frame" x="0.0" y="53.333333333333336" width="284" height="18.000000000000007"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Zs7-nh-31g" firstAttribute="leading" secondItem="pnn-fI-QWL" secondAttribute="trailing" constant="13" id="GtH-7j-xQz"/>
+                                        <constraint firstAttribute="bottom" secondItem="Zs7-nh-31g" secondAttribute="bottom" constant="6.6699999999999999" id="Tfh-S3-9ws"/>
+                                        <constraint firstItem="pnn-fI-QWL" firstAttribute="centerY" secondItem="ZRo-yh-j4t" secondAttribute="centerY" id="UoW-bp-X0t"/>
+                                        <constraint firstAttribute="trailing" secondItem="Zs7-nh-31g" secondAttribute="trailing" constant="16" id="Zfo-Rh-qEc"/>
+                                        <constraint firstItem="pnn-fI-QWL" firstAttribute="leading" secondItem="ZRo-yh-j4t" secondAttribute="leading" constant="15" id="feL-P0-hrB"/>
+                                        <constraint firstItem="Zs7-nh-31g" firstAttribute="top" secondItem="ZRo-yh-j4t" secondAttribute="top" constant="7" id="ogQ-4C-nte"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imageOfPlace" destination="pnn-fI-QWL" id="LbY-iQ-TEU"/>
+                                    <outlet property="locationLabel" destination="gjB-m4-pdZ" id="6vG-oJ-a3k"/>
+                                    <outlet property="nameLabel" destination="e3S-do-RDY" id="bUd-1s-fuT"/>
+                                    <outlet property="typeLabel" destination="faK-lY-yUp" id="JmM-oP-PaT"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -34,7 +80,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocS-hy-RN6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034" y="-33"/>
+            <point key="canvasLocation" x="1032.824427480916" y="-33.098591549295776"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xk4-oT-3xV">
