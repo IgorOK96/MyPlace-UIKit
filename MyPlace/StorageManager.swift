@@ -23,7 +23,7 @@ class StorageManager {
         }
     }
     
-    static func edit(_ place: Place, name: String?, location: String?, type: String?, imageData: Data?) {
+    static func edit(_ place: Place, name: String?, location: String?, type: String?, imageData: Data?, rating: Double?) {
         write {
             if let name = name {
                 place.name = name
@@ -36,6 +36,9 @@ class StorageManager {
             }
             if let imageData = imageData {
                 place.imageData = imageData
+            }
+            if let rating = rating {
+                place.rating = rating
             }
         }
     }

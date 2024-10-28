@@ -29,11 +29,12 @@ class MainViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         places = realm.objects(Place.self)
-        
+    
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search place"
         navigationItem.searchController = searchController
+        
         definesPresentationContext = true
     }
     
@@ -47,32 +48,22 @@ class MainViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-        let place: Place
-        if isFiltering {
-            place = filteredPlaces[indexPath.row]
-        } else {
-            place = places[indexPath.row]
-        }
+        let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
         
         cell.nameLabel.text = place.name
         cell.locationLabel.text = place.location
         cell.typeLabel.text = place.type
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
-        
-        cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
-        cell.imageOfPlace?.clipsToBounds = true
+        cell.starsCount.text = getRatingStarsString(rating: Int(place.rating))
         
         return cell
     }
     
+    
     // MARK: - Table View Delegate
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        var place = Place()
-        if isFiltering {
-            place = filteredPlaces[indexPath.row]
-        } else {
-            place = places[indexPath.row]
-        }
+        let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
+
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completionHandler in
             StorageManager.delete(place)
@@ -91,12 +82,8 @@ class MainViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let place: Place
-            if isFiltering {
-                place = filteredPlaces[indexPath.row]
-            } else {
-                place = places[indexPath.row]
-            }
+            let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
+
             let newPlaceVC = segue.destination as! NewPlaceTableViewController
             newPlaceVC.currentPlace = place
         }
@@ -130,6 +117,17 @@ class MainViewController: UIViewController ,UITableViewDataSource, UITableViewDe
             places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
         }
         tableView.reloadData()
+    }
+    
+    private func getRatingStarsString(rating: Int) -> String {
+        let maxRating = 5
+        let filledStar = "★"
+        let emptyStar = "☆"
+
+        let filledStars = String(repeating: filledStar, count: rating)
+        let emptyStars = String(repeating: emptyStar, count: maxRating - rating)
+
+        return filledStars + emptyStars
     }
 }
 

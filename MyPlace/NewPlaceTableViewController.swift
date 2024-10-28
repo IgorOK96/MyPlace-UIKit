@@ -8,7 +8,7 @@
 import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
-    var currentPlace: Place?
+    var currentPlace: Place!
     var imageIsChanged = false
 
     @IBOutlet weak var placeImage: UIImageView!
@@ -17,6 +17,7 @@ class NewPlaceTableViewController: UITableViewController {
     @IBOutlet weak var locationTF: UITextField!
     @IBOutlet weak var nameTF: UITextField!
     
+    @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var cancelbutton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     override func viewDidLoad() {
@@ -74,6 +75,7 @@ override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: Inde
             nameTF.text = currentPlace?.name
             locationTF.text = currentPlace?.location
             typeTF.text = currentPlace?.type
+            ratingControl.rating = Int(currentPlace.rating)
         }
     }
     
@@ -104,14 +106,16 @@ override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: Inde
                 name: nameTF.text,
                 location: locationTF.text,
                 type: typeTF.text,
-                imageData: imageData
+                imageData: imageData,
+                rating: Double(ratingControl.rating)
             )
         } else {
             let newPlace = Place(
                 name: nameTF.text!,
                 location: locationTF.text,
                 type: typeTF.text,
-                imageData: imageData
+                imageData: imageData,
+                rating: Double(ratingControl.rating)
             )
             StorageManager.saveobject(newPlace)
         }
