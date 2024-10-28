@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,10 +39,26 @@
                                                         </hierarchicalColors>
                                                     </imageReference>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyG-Vc-GXT">
+                                                    <rect key="frame" x="327" y="189" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="KyD-Tq-6Ke"/>
+                                                        <constraint firstAttribute="height" constant="50" id="wX5-rv-GfK"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="map">
+                                                        <color key="baseForegroundColor" systemColor="systemCyanColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <segue destination="z9l-v9-OT9" kind="presentation" identifier="showMap" modalPresentationStyle="fullScreen" id="bqF-de-VzI"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="NXp-yL-3yH" secondAttribute="bottom" id="77I-mf-rLz"/>
                                                 <constraint firstAttribute="trailing" secondItem="NXp-yL-3yH" secondAttribute="trailing" constant="16" id="NyL-GU-CAF"/>
+                                                <constraint firstAttribute="trailing" secondItem="jyG-Vc-GXT" secondAttribute="trailing" constant="16" id="WZw-PI-sKe"/>
+                                                <constraint firstAttribute="bottom" secondItem="jyG-Vc-GXT" secondAttribute="bottom" constant="11" id="Ysy-iU-j3k"/>
                                                 <constraint firstItem="NXp-yL-3yH" firstAttribute="top" secondItem="2AN-Yw-KCJ" secondAttribute="top" id="juy-Nz-dQS"/>
                                                 <constraint firstItem="NXp-yL-3yH" firstAttribute="leading" secondItem="2AN-Yw-KCJ" secondAttribute="leading" constant="16" id="k8b-UE-bzo"/>
                                             </constraints>
@@ -205,6 +222,52 @@
                 <exit id="h5U-cs-XFc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1812.9770992366412" y="-54.225352112676056"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="SZM-sm-qAK">
+            <objects>
+                <viewController id="z9l-v9-OT9" customClass="MapViewController" customModule="MyPlace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aNJ-sF-laa">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuS-Gy-w5D">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaE-Sc-cwc">
+                                <rect key="frame" x="318" y="45" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="hja-Rh-lgX"/>
+                                    <constraint firstAttribute="height" constant="30" id="yfq-6S-xPS"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system">
+                                    <color key="baseForegroundColor" systemColor="systemOrangeColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="closeVC" destination="z9l-v9-OT9" eventType="touchUpInside" id="HsG-Yi-uDu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pSE-We-eCu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pSE-We-eCu" firstAttribute="trailing" secondItem="BaE-Sc-cwc" secondAttribute="trailing" constant="45" id="Qtu-5Z-3h6"/>
+                            <constraint firstItem="BaE-Sc-cwc" firstAttribute="top" secondItem="pSE-We-eCu" secondAttribute="top" constant="45" id="TFk-61-UCY"/>
+                            <constraint firstItem="vuS-Gy-w5D" firstAttribute="leading" secondItem="pSE-We-eCu" secondAttribute="leading" id="UAl-V4-8RR"/>
+                            <constraint firstItem="vuS-Gy-w5D" firstAttribute="top" secondItem="aNJ-sF-laa" secondAttribute="top" id="Ws2-ms-e6d"/>
+                            <constraint firstItem="vuS-Gy-w5D" firstAttribute="trailing" secondItem="pSE-We-eCu" secondAttribute="trailing" id="XyR-qO-M8q"/>
+                            <constraint firstAttribute="bottom" secondItem="vuS-Gy-w5D" secondAttribute="bottom" id="o5R-Nr-Uiu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="vuS-Gy-w5D" id="oUs-mQ-XSu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QLQ-ad-Hfz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2566" y="-54"/>
         </scene>
         <!--My Places-->
         <scene sceneID="GKh-Fa-F7q">
@@ -380,12 +443,17 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.down.2" catalog="system" width="128" height="121"/>
+        <image name="map" width="50" height="50"/>
         <image name="photo.badge.plus.fill" catalog="system" width="128" height="97"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
