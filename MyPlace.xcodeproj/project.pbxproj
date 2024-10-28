@@ -6,12 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9AB3AF4B2CCEA1660016CCD6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9AB3AF4A2CCEA1660016CCD6 /* RealmSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		9AB3AF112CCE37160016CCD6 /* MyPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9AB3AF232CCE37170016CCD6 /* Exceptions for "MyPlace" folder in "MyPlace" target */ = {
+		9ADE112C2CCEB2E300EA6616 /* Exceptions for "MyPlace" folder in "MyPlace" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -24,7 +28,7 @@
 		9AB3AF132CCE37160016CCD6 /* MyPlace */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				9AB3AF232CCE37170016CCD6 /* Exceptions for "MyPlace" folder in "MyPlace" target */,
+				9ADE112C2CCEB2E300EA6616 /* Exceptions for "MyPlace" folder in "MyPlace" target */,
 			);
 			path = MyPlace;
 			sourceTree = "<group>";
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AB3AF4B2CCEA1660016CCD6 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +72,7 @@
 			buildPhases = (
 				9AB3AF0D2CCE37160016CCD6 /* Sources */,
 				9AB3AF0E2CCE37160016CCD6 /* Frameworks */,
-				9AB3AF0F2CCE37160016CCD6 /* Resources */,
+				9ADE111F2CCEB2BA00EA6616 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -78,6 +83,7 @@
 			);
 			name = MyPlace;
 			packageProductDependencies = (
+				9AB3AF4A2CCEA1660016CCD6 /* RealmSwift */,
 			);
 			productName = MyPlace;
 			productReference = 9AB3AF112CCE37160016CCD6 /* MyPlace.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 9AB3AF082CCE37160016CCD6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9AB3AF472CCEA1660016CCD6 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9AB3AF122CCE37160016CCD6 /* Products */;
 			projectDirPath = "";
@@ -118,7 +127,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9AB3AF0F2CCE37160016CCD6 /* Resources */ = {
+		9ADE111F2CCEB2BA00EA6616 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -341,6 +350,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9AB3AF472CCEA1660016CCD6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9AB3AF4A2CCEA1660016CCD6 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9AB3AF472CCEA1660016CCD6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9AB3AF092CCE37160016CCD6 /* Project object */;
 }
