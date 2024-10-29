@@ -100,7 +100,7 @@ class MapViewController: UIViewController {
     
     private func getDirections() {
         guard let location = locationManager.location?.coordinate else {
-            showAlert(title: "Eror", message: "Current location is not found")
+            showAlert(title: "Error", message: "Current location is not found")
             return
         }
         
