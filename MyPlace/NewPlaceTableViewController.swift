@@ -90,11 +90,19 @@ override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: Inde
     
 //MARK: NAvigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" {
-            return
+        guard let identifier = segue.identifier,
+              let mapVC = segue.destination as? MapViewController
+        else {return }
+        
+        mapVC.incomeSegueIdentifier = identifier
+        mapVC.mapViewControllerDelegate = self
+        
+        if identifier == "showPlace" {
+            mapVC.place.name = nameTF.text!
+            mapVC.place.location = locationTF.text
+            mapVC.place.type = typeTF.text
+            mapVC.place.imageData = placeImage.image?.pngData()
         }
-        let mapVC = segue.destination as! MapViewController
-        mapVC.place = currentPlace
     }
     
     func saveNewPlace() {
@@ -174,4 +182,12 @@ extension NewPlaceTableViewController: UITextFieldDelegate {
                 saveButton.isEnabled = false
             }
     }
+}
+
+extension NewPlaceTableViewController: MapViewControllerDelegate {
+    func getAddress(_ address: String?) {
+        locationTF.text = address
+    }
+    
+    
 }
