@@ -7,7 +7,7 @@
 
 import UIKit
 
-@IBDesignable class RatingControl: UIStackView {
+@IBDesignable final class RatingControl: UIStackView {
     
     private var ratingButtons = [UIButton]()
     

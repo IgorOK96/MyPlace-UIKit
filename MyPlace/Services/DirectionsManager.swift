@@ -7,7 +7,7 @@
 import Foundation
 import MapKit
 
-class DirectionsManager {
+final class DirectionsManager {
     var directionsArray: [MKDirections] = []
     var routes: [MKRoute] = []
     var routeColors: [MKPolyline: UIColor] = [:]

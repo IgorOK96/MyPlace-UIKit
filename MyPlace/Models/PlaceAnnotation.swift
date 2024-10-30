@@ -7,7 +7,7 @@
 
 import MapKit
 
-class PlaceAnnotation: NSObject, MKAnnotation {
+final class PlaceAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     let title: String?
     let subtitle: String?

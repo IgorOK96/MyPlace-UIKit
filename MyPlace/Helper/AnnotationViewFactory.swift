@@ -7,7 +7,7 @@
 
 import MapKit
 
-class AnnotationViewFactory {
+final class AnnotationViewFactory {
     static func createAnnotationView(for annotation: MKAnnotation, on mapView: MKMapView) -> MKAnnotationView? {
         guard let placeAnnotation = annotation as? PlaceAnnotation else { return nil }
         let annotationIdentifier = "PlaceAnnotationView"

@@ -13,7 +13,7 @@ protocol MapViewControllerDelegate: AnyObject {
     func getAddress(_ address: String?)
 }
 
-class MapViewController: UIViewController {
+final class MapViewController: UIViewController {
     var place = Place()
     weak var mapViewControllerDelegate: MapViewControllerDelegate?
     

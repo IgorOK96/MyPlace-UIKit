@@ -15,7 +15,7 @@ protocol UserLocationManagerDelegate: AnyObject {
 
 }
 
-class UserLocationManager: NSObject {
+final class UserLocationManager: NSObject {
     private let locationManager = CLLocationManager()
     weak var delegate: UserLocationManagerDelegate?
 

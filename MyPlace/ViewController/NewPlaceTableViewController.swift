@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewPlaceTableViewController: UITableViewController {
+final class NewPlaceTableViewController: UITableViewController {
     var currentPlace: Place!
     var imageIsChanged = false
 

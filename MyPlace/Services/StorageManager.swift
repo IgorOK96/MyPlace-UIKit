@@ -10,7 +10,7 @@ import Foundation
 
 var realm = try! Realm()
 
-class StorageManager {
+final class StorageManager {
     static func saveobject(_ place: Place) {
         write {
             realm.add(place)

@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class AnnotationManager {
+final class AnnotationManager {
     func addAnnotation(for place: Place, on mapView: MKMapView, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
         guard let location = place.location else {
             completion(nil)
