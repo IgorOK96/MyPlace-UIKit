@@ -23,25 +23,16 @@ final class StorageManager {
         }
     }
     
-    static func edit(_ place: Place, name: String?, location: String?, type: String?, imageData: Data?, rating: Double?) {
+    static func edit(_ place: Place, name: String? = nil, location: String? = nil, type: String? = nil, imageData: Data? = nil, rating: Double? = nil) {
         write {
-            if let name = name {
-                place.name = name
-            }
-            if let location = location {
-                place.location = location
-            }
-            if let type = type {
-                place.type = type
-            }
-            if let imageData = imageData {
-                place.imageData = imageData
-            }
-            if let rating = rating {
-                place.rating = rating
-            }
+            place.name = name ?? place.name
+            place.location = location ?? place.location
+            place.type = type ?? place.type
+            place.imageData = imageData ?? place.imageData
+            place.rating = rating ?? place.rating
         }
     }
+
     
     static private func write(completion: () -> Void) {
         do {
