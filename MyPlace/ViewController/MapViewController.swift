@@ -143,25 +143,24 @@ extension MapViewController: UserLocationManagerDelegate {
     }
     
     func userLocationManager(didChangeAuthorization status: CLAuthorizationStatus) {
-            switch status {
-            case .authorizedWhenInUse, .authorizedAlways:
-                mapView.showsUserLocation = true
-                // Если нужно, центрируйте карту на местоположении пользователя
-                if let location = locationManager.currentLocation {
-                    centerMapOnLocation(location.coordinate)
-                }
-            case .denied, .restricted:
-                showAlert(
-                    title: "Доступ к местоположению запрещен",
-                    message: "Разрешите доступ в настройках"
-                )
-            case .notDetermined:
-                break
-            @unknown default:
-                break
+        switch status {
+        case .authorizedWhenInUse, .authorizedAlways:
+            mapView.showsUserLocation = true
+            // Если нужно, центрируйте карту на местоположении пользователя
+            if let location = locationManager.currentLocation {
+                centerMapOnLocation(location.coordinate)
             }
+        case .denied, .restricted:
+            showAlert(
+                title: "Доступ к местоположению запрещен",
+                message: "Разрешите доступ в настройках"
+            )
+        case .notDetermined:
+            break
+        @unknown default:
+            break
         }
-    
+    }
 }
 
 // MARK: - MKMapViewDelegate
@@ -215,38 +214,11 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // Проверяем, что аннотация не является текущим местоположением пользователя
-        guard !(annotation is MKUserLocation) else { return nil }
-        
-        let annotationIdentifier = "MarkerIdentifier"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as? MKMarkerAnnotationView
-        
-        if annotationView == nil {
-            // Создание нового маркера
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            annotationView?.canShowCallout = true // Показывает дополнительную информацию при нажатии на маркер
-            
-            // Настройка булавки
-            annotationView?.markerTintColor = .systemBlue // Цвет булавки
-            annotationView?.glyphText = "📍" // Иконка или текст в центре маркера (можно заменить на emoji или текст)
-            
-            // Добавление фото
-            if let imageData = place.imageData {
-                let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-                imageView.layer.cornerRadius = 10
-                imageView.clipsToBounds = true
-                imageView.image = UIImage(data: imageData)
-                annotationView?.leftCalloutAccessoryView = imageView
-            }
-            
-            // Добавление кнопки для информации
-            let infoButton = UIButton(type: .detailDisclosure)
-            annotationView?.rightCalloutAccessoryView = infoButton
-        } else {
-            // Если аннотация уже существует, обновляем её
-            annotationView?.annotation = annotation
+        if annotation is MKUserLocation {
+            return nil
         }
         
-        return annotationView
+        return AnnotationViewFactory.createAnnotationView(for: annotation, on: mapView)
     }
 }
 

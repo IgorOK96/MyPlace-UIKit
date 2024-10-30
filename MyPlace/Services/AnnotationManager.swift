@@ -14,7 +14,7 @@ class AnnotationManager {
             completion(nil)
             return
         }
-        
+
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(location) { placemarks, error in
             if let error = error {
@@ -22,23 +22,20 @@ class AnnotationManager {
                 completion(nil)
                 return
             }
-            
+
             guard let placemark = placemarks?.first,
                   let placemarkLocation = placemark.location else {
                 completion(nil)
                 return
             }
-            
-            let annotation = MKPointAnnotation()
-            annotation.title = place.name
-            annotation.subtitle = place.type
-            annotation.coordinate = placemarkLocation.coordinate
-            
+
+            let annotation = PlaceAnnotation(place: place, coordinate: placemarkLocation.coordinate)
+
             DispatchQueue.main.async {
                 mapView.addAnnotation(annotation)
                 mapView.showAnnotations([annotation], animated: true)
             }
-            
+
             completion(placemarkLocation.coordinate)
         }
     }
