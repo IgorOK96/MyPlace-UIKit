@@ -57,7 +57,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="jyG-Vc-GXT" secondAttribute="bottom" constant="14" id="0uG-Jt-G5R"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="jyG-Vc-GXT" secondAttribute="trailing" constant="5" id="2fP-ed-3GU"/>
                                                 <constraint firstAttribute="bottom" secondItem="NXp-yL-3yH" secondAttribute="bottom" id="77I-mf-rLz"/>
                                                 <constraint firstAttribute="trailing" secondItem="NXp-yL-3yH" secondAttribute="trailing" constant="16" id="NyL-GU-CAF"/>
                                                 <constraint firstAttribute="trailing" secondItem="jyG-Vc-GXT" secondAttribute="trailing" constant="5" id="R42-pH-vT0"/>

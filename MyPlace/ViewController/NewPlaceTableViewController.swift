@@ -188,6 +188,4 @@ extension NewPlaceTableViewController: MapViewControllerDelegate {
     func getAddress(_ address: String?) {
         locationTF.text = address
     }
-    
-    
 }
